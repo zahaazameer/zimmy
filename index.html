@@ -44,6 +44,12 @@
             color: #fff;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
             margin-bottom: 2rem;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #e60073, 0 0 20px #e60073; }
+            to { text-shadow: 0 0 10px #fff, 0 0 20px #ff4da6, 0 0 30px #ff4da6, 0 0 40px #ff4da6; }
         }
 
         .btn {
@@ -86,6 +92,13 @@
             backdrop-filter: blur(5px);
             overflow-y: auto;
             margin: 20px auto;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .promise-paper:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
         }
 
         @keyframes paperAppear {
@@ -101,6 +114,13 @@
             font-size: 2.5rem;
             font-family: 'Great Vibes', cursive;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            animation: pulseText 2s infinite;
+        }
+
+        @keyframes pulseText {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
         .promise-item {
@@ -111,6 +131,12 @@
             padding-left: 40px;
             position: relative;
             line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        .promise-item:hover {
+            transform: translateX(10px);
+            color: #ff0066;
         }
 
         .promise-item:before {
@@ -136,6 +162,12 @@
             margin-top: 40px;
             font-size: 2rem;
             font-family: 'Dancing Script', cursive;
+            animation: floatUpDown 3s ease-in-out infinite;
+        }
+
+        @keyframes floatUpDown {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         .floating-heart {
@@ -184,6 +216,13 @@
             margin: 20px auto;
             border: 5px solid white;
             animation: fadeIn 1s forwards;
+            transform-style: preserve-3d;
+            transition: all 0.5s ease;
+        }
+
+        .couple-photo:hover {
+            transform: rotateY(10deg) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
         }
 
         @keyframes fadeIn {
@@ -203,6 +242,27 @@
             font-size: 2rem;
             color: #d23669;
             font-family: 'Dancing Script', cursive;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-message:before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, #ff6b81, #ff8e53, #ff6b81);
+            z-index: -1;
+            animation: gradientRotate 6s linear infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradientRotate {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .romantic-gif {
@@ -211,11 +271,67 @@
             margin: 20px auto;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            animation: fadeIn 1s forwards;
+            animation: fadeIn 1s forwards, float 4s ease-in-out infinite;
         }
 
         .hidden {
             display: none;
+        }
+
+        .greeting {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+            text-align: center;
+            font-size: 2.5rem;
+            color: #ff0066;
+            font-family: 'Dancing Script', cursive;
+            display: none;
+            animation: heartBeat 1s;
+            border: 3px solid #ff6b81;
+        }
+
+        @keyframes heartBeat {
+            0% { transform: translate(-50%, -50%) scale(0.8); }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #fff;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: sparkle 1s ease-out forwards;
+            box-shadow: 0 0 10px 2px #fff;
+        }
+
+        @keyframes sparkle {
+            0% { transform: scale(0); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        .love-beam {
+            position: absolute;
+            width: 2px;
+            height: 0;
+            background: linear-gradient(to bottom, transparent, #ff0066);
+            left: 50%;
+            transform-origin: bottom center;
+            animation: beam 1.5s ease-out forwards;
+            z-index: 5;
+        }
+
+        @keyframes beam {
+            to { height: 100vh; }
         }
     </style>
 </head>
@@ -259,10 +375,16 @@
         <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExcW9pY2Z0b3JpZ2FjZXJ3d2V5dXJ6b2Z0Z2R1dG9xM2R4a2R4eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26FPJGjheg6xT4GBy/giphy.gif" alt="Romantic animation" class="romantic-gif hidden" id="romanticGif">
     </div>
 
+    <div class="greeting hidden" id="romanticGreeting">
+        My Beautiful Love,<br>
+        You're the most precious gift in my life!<br>
+        ❤️❤️❤️
+    </div>
+
     <script>
         // Create floating hearts
-        function createHearts() {
-            for (let i = 0; i < 30; i++) {
+        function createHearts(count = 30, delay = 200) {
+            for (let i = 0; i < count; i++) {
                 setTimeout(() => {
                     const heart = document.createElement('div');
                     heart.className = 'floating-heart';
@@ -273,13 +395,13 @@
                     heart.style.animationDuration = `${Math.random() * 4 + 4}s`;
                     heart.style.animationDelay = `${Math.random() * 2}s`;
                     document.body.appendChild(heart);
-                }, i * 200);
+                }, i * delay);
             }
         }
 
         // Create falling rose petals
-        function createPetals() {
-            for (let i = 0; i < 50; i++) {
+        function createPetals(count = 50, delay = 300) {
+            for (let i = 0; i < count; i++) {
                 setTimeout(() => {
                     const petal = document.createElement('div');
                     petal.className = 'rose-petal';
@@ -289,7 +411,43 @@
                     petal.style.height = `${Math.random() * 15 + 10}px`;
                     petal.style.animationDuration = `${Math.random() * 10 + 5}s`;
                     document.body.appendChild(petal);
-                }, i * 300);
+                }, i * delay);
+            }
+        }
+
+        // Create sparkle effect
+        function createSparkles(x, y) {
+            for (let i = 0; i < 20; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = `${x + (Math.random() * 40 - 20)}px`;
+                sparkle.style.top = `${y + (Math.random() * 40 - 20)}px`;
+                sparkle.style.animationDelay = `${i * 0.05}s`;
+                document.body.appendChild(sparkle);
+                
+                // Remove sparkle after animation
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 1000);
+            }
+        }
+
+        // Create love beam effect
+        function createLoveBeam() {
+            for (let i = 0; i < 36; i++) {
+                setTimeout(() => {
+                    const beam = document.createElement('div');
+                    beam.className = 'love-beam';
+                    beam.style.left = '50%';
+                    beam.style.bottom = '0';
+                    beam.style.transform = `rotate(${i * 10}deg)`;
+                    document.body.appendChild(beam);
+                    
+                    // Remove beam after animation
+                    setTimeout(() => {
+                        beam.remove();
+                    }, 1500);
+                }, i * 30);
             }
         }
 
@@ -299,6 +457,7 @@
             document.getElementById('promisePaper').style.display = 'block';
             createHearts();
             createPetals();
+            createLoveBeam();
             
             // Scroll to the paper
             setTimeout(() => {
@@ -317,8 +476,25 @@
                 document.getElementById('couplePhoto').scrollIntoView({ behavior: 'smooth' });
             }, 300);
             
-            // Create more hearts
-            createHearts();
+            // Create more effects
+            createHearts(50, 100);
+            createPetals(30, 200);
+        });
+
+        // Letter click handler for romantic greeting
+        document.getElementById('promisePaper').addEventListener('click', function(e) {
+            if (e.target === this) { // Only if clicking on the paper itself, not its children
+                const greeting = document.getElementById('romanticGreeting');
+                greeting.style.display = 'block';
+                
+                // Create sparkles at click position
+                createSparkles(e.clientX, e.clientY);
+                
+                // Hide greeting after 3 seconds
+                setTimeout(() => {
+                    greeting.style.display = 'none';
+                }, 3000);
+            }
         });
 
         // Initialize
