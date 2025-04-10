@@ -9,13 +9,14 @@
         body {
             margin: 0;
             padding: 0;
-            height: 100vh;
-            overflow: hidden;
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #ffc3a0, #ffafbd);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
             font-family: 'Sacramento', cursive;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             position: relative;
@@ -34,6 +35,7 @@
             z-index: 10;
             width: 90%;
             max-width: 800px;
+            margin: 50px auto;
         }
 
         h1 {
@@ -58,6 +60,7 @@
             font-family: 'Dancing Script', cursive;
             backdrop-filter: blur(5px);
             border: 2px solid rgba(255, 255, 255, 0.3);
+            margin: 20px 0;
         }
 
         .btn:hover {
@@ -71,6 +74,7 @@
             background-color: rgba(255, 255, 255, 0.9);
             width: 90%;
             max-width: 700px;
+            max-height: 70vh;
             padding: 40px;
             border-radius: 15px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
@@ -80,6 +84,8 @@
             animation: paperAppear 0.8s forwards;
             border: 1px solid rgba(255, 107, 129, 0.5);
             backdrop-filter: blur(5px);
+            overflow-y: auto;
+            margin: 20px auto;
         }
 
         @keyframes paperAppear {
@@ -170,51 +176,87 @@
             }
         }
 
-        .envelope {
-            position: absolute;
-            width: 100px;
-            height: 60px;
-            background: #f8c3cd;
-            border-radius: 5px;
+        .couple-photo {
             display: none;
-            z-index: 5;
-            animation: fly 4s ease-in-out forwards;
+            max-width: 80%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin: 20px auto;
+            border: 5px solid white;
+            animation: fadeIn 1s forwards;
         }
 
-        @keyframes fly {
-            0% {
-                transform: translate(0, 0) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(200px, -200px) rotate(20deg);
-                opacity: 0;
-            }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .final-message {
+            display: none;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px auto;
+            max-width: 700px;
+            text-align: center;
+            animation: fadeIn 1s forwards;
+            font-size: 2rem;
+            color: #d23669;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .romantic-gif {
+            display: none;
+            max-width: 300px;
+            margin: 20px auto;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s forwards;
+        }
+
+        .hidden {
+            display: none;
         }
     </style>
 </head>
 <body>
     <div class="container">
-<h1> Adavnce Happy Birthday Naa Bangaaru 💗💗💖💖💖<h!
-        <h2>For My Dearest Potti ❤️</h2>
+        <h1>For My Dearest Potti ❤️</h1>
         <button class="btn" id="promiseBtn">Click Me My Love</button>
         
         <div class="promise-paper" id="promisePaper">
             <h2>My Eternal Promises to You</h2>
             
-            <div class="promise-item">To love you more with each sunrise and cherish you with every sunset</div>
-            <div class="promise-item">To be your shelter in storms and your partner in sunshine</div>
-            <div class="promise-item">To listen with my heart and understand with my soul</div>
-            <div class="promise-item">To celebrate your joys as if they were my own</div>
-            <div class="promise-item">To grow together, learn together, and build dreams together</div>
-            <div class="promise-item">To choose you, every day, in a thousand different ways</div>
-            <div class="promise-item">To love not just who you are, but who you're becoming</div>
+            <div class="promise-item">To love you unconditionally through all of life's seasons</div>
+            <div class="promise-item">To be your safe haven when the world feels overwhelming</div>
+            <div class="promise-item">To listen with patience and understand with compassion</div>
+            <div class="promise-item">To celebrate your uniqueness that makes you so special</div>
+            <div class="promise-item">To grow alongside you, learning from each experience</div>
+            <div class="promise-item">To choose you every morning and cherish you every night</div>
+            <div class="promise-item">To support your dreams as passionately as my own</div>
+            <div class="promise-item">To remember that love is a daily decision, not just a feeling</div>
+            <div class="promise-item">To be honest even when the truth is difficult to share</div>
+            <div class="promise-item">To keep our connection alive through small, loving gestures</div>
             
             <div class="signature">
                 Yours forever and always,<br>
                 <span id="yourName">[Your Name]</span>
             </div>
+
+            <button class="btn" id="photoBtn">Click Me Dear</button>
         </div>
+
+        <img src="https://i.imgur.com/XYQ5X9b.jpg" alt="Couple holding hands" class="couple-photo hidden" id="couplePhoto">
+        
+        <div class="final-message hidden" id="finalMessage">
+            Advanced Happy Birthday My Dear!<br><br>
+            I will always be there standing with you<br>
+            through every struggle in life<br>
+            and celebrating every joy together.<br><br>
+            I love you more than words can express.
+        </div>
+        
+        <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExcW9pY2Z0b3JpZ2FjZXJ3d2V5dXJ6b2Z0Z2R1dG9xM2R4a2R4eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26FPJGjheg6xT4GBy/giphy.gif" alt="Romantic animation" class="romantic-gif hidden" id="romanticGif">
     </div>
 
     <script>
@@ -251,34 +293,41 @@
             }
         }
 
-        // Create flying envelope animation
-        function createEnvelope() {
-            const envelope = document.createElement('div');
-            envelope.className = 'envelope';
-            envelope.style.left = '50%';
-            envelope.style.top = '50%';
-            document.body.appendChild(envelope);
-            setTimeout(() => {
-                envelope.style.display = 'block';
-            }, 100);
-            setTimeout(() => {
-                envelope.remove();
-            }, 4000);
-        }
-
-        // Button click handler
+        // First button click handler
         document.getElementById('promiseBtn').addEventListener('click', function() {
-            this.style.display = 'none';
+            this.classList.add('hidden');
             document.getElementById('promisePaper').style.display = 'block';
             createHearts();
             createPetals();
-            createEnvelope();
+            
+            // Scroll to the paper
+            setTimeout(() => {
+                document.getElementById('promisePaper').scrollIntoView({ behavior: 'smooth' });
+            }, 500);
+        });
+
+        // Second button click handler (inside paper)
+        document.getElementById('photoBtn').addEventListener('click', function() {
+            document.getElementById('couplePhoto').classList.remove('hidden');
+            document.getElementById('finalMessage').classList.remove('hidden');
+            document.getElementById('romanticGif').classList.remove('hidden');
+            
+            // Scroll to the photo
+            setTimeout(() => {
+                document.getElementById('couplePhoto').scrollIntoView({ behavior: 'smooth' });
+            }, 300);
+            
+            // Create more hearts
+            createHearts();
         });
 
         // Initialize
         window.onload = function() {
             createHearts();
             setTimeout(createPetals, 1000);
+            
+            // Replace with your actual couple photo URL
+            // document.getElementById('couplePhoto').src = "YOUR_COUPLE_PHOTO_URL_HERE";
         };
     </script>
 </body>
